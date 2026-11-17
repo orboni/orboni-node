@@ -1,0 +1,61 @@
+{
+    "name": "orboni",
+    "version": "1.0.0",
+    "description": "Orboni's API for Node.js and TypeScript: crypto payments (USDT, USDC, BTC and more) paid straight to your own wallets.",
+    "keywords": [
+        "orboni",
+        "crypto",
+        "payments",
+        "usdt",
+        "usdc",
+        "bitcoin",
+        "checkout",
+        "payment-gateway",
+        "webhooks"
+    ],
+    "homepage": "https://orboni.com/docs/libraries",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/orboni/orboni-node.git"
+    },
+    "bugs": "https://github.com/orboni/orboni-node/issues",
+    "license": "MIT",
+    "author": "Orboni <support@orboni.com>",
+    "type": "module",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md"
+    ],
+    "sideEffects": false,
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {
+        "build": "rm -rf dist && tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node scripts/cjs-package.mjs",
+        "test": "npm run build && node --test test/",
+        "types": "node scripts/gen-types.mjs",
+        "prepublishOnly": "npm test"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.0",
+        "typescript": "^5.9.3"
+    }
+}
